@@ -5,12 +5,12 @@
 # ///
 
 """
-chromatic-tree-analyzer
+analyze-storybook-graph
 
-this script analyzes a preview-stats.json file from a Vite-based Chromatic build to calculate
+this script analyzes a preview-stats.json file from a Vite-based Storybook build to calculate
 how many files ultimately depend on each component in the dependency tree.
 
-usage: ./analyze_dependencies.py --input preview-stats.json [--output dependency_analysis.json] [--top 20] [--include-node-modules]
+usage: ./analyze_storybook_graph.py --input preview-stats.json [--output dependency_analysis.json] [--top 20] [--include-node-modules]
 """
 
 import json
@@ -220,7 +220,7 @@ def main():
     """main function."""
     import argparse
 
-    parser = argparse.ArgumentParser(description="Analyze Chromatic dependency tree")
+    parser = argparse.ArgumentParser(description="analyze Storybook dependency graph")
     parser.add_argument(
         "--input",
         "-i",
