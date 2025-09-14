@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #444;
+            background: #222;
+        }
+        .key-active {
+            color: #0f0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>VOOM Input Test</h1>
+    <div id="status">
+        <p>Press keys to test input detection:</p>
+        <p>W/↑: <span id="forward">inactive</span></p>
+        <p>S/↓: <span id="backward">inactive</span></p>
+        <p>A/←: <span id="left">inactive</span></p>
+        <p>D/→: <span id="right">inactive</span></p>
+        <p>Shift: <span id="run">inactive</span></p>
+    </div>
+    
+    <script type="module">
+        import hotkeys from 'hotkeys-js';
+        
+        const status = {
+            forward: document.getElementById('forward'),
+            backward: document.getElementById('backward'),
+            left: document.getElementById('left'),
+            right: document.getElementById('right'),
+            run: document.getElementById('run')
+        };
+        
+        // Test hotkeys.js directly
+        hotkeys('w,up', () => {
+            console.log('W/UP pressed');
+            status.forward.textContent = 'ACTIVE';
+            status.forward.className = 'key-active';
+        });
+        
+        hotkeys('s,down', () => {
+            console.log('S/DOWN pressed');
+            status.backward.textContent = 'ACTIVE';
+            status.backward.className = 'key-active';
+        });
+        
+        hotkeys('a,left', () => {
+            console.log('A/LEFT pressed');
+            status.left.textContent = 'ACTIVE';
+            status.left.className = 'key-active';
+        });
+        
+        hotkeys('d,right', () => {
+            console.log('D/RIGHT pressed');
+            status.right.textContent = 'ACTIVE';
+            status.right.className = 'key-active';
+        });
+        
+        hotkeys('shift', () => {
+            console.log('SHIFT pressed');
+            status.run.textContent = 'ACTIVE';
+            status.run.className = 'key-active';
+        });
+        
+        // Handle key up
+        document.addEventListener('keyup', (e) => {
+            const key = e.key.toLowerCase();
+            switch(key) {
+                case 'w':
+                case 'arrowup':
+                    status.forward.textContent = 'inactive';
+                    status.forward.className = '';
+                    break;
+                case 's':
+                case 'arrowdown':
+                    status.backward.textContent = 'inactive';
+                    status.backward.className = '';
+                    break;
+                case 'a':
+                case 'arrowleft':
+                    status.left.textContent = 'inactive';
+                    status.left.className = '';
+                    break;
+                case 'd':
+                case 'arrowright':
+                    status.right.textContent = 'inactive';
+                    status.right.className = '';
+                    break;
+                case 'shift':
+                    status.run.textContent = 'inactive';
+                    status.run.className = '';
+                    break;
+            }
+        });
+        
+        console.log('Hotkeys registered:', hotkeys.getKeys());
+    </script>
+</body>
+</html>

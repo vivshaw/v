@@ -1,0 +1,7 @@
+- **Vite** app with **TypeScript** entrypoint (main.ts) and a single canvas.
+- Graphics: **three.js** scene with `WebGLRenderer`, `PerspectiveCamera`, `PointerLockControls`. Draw axis‑aligned walls from a Tiled JSON tilemap. Textures via `TextureLoader` (`NearestFilter` for crisp pixels).
+- Input: lock pointer on click; WASD via `hotkeys‑js`/`tinykeys`; map “Use” and “Fire” to keys/mouse.
+- Collision: maintain a 2D occupancy grid from the tilemap; resolve player movement using detect‑collisions against wall boxes (XY only).
+- Combat: hitscan uses Raycaster from camera; enemies use easystar.js to step toward the player on the grid.
+- Look: optional `RenderPixelatedPass` for instant retro vibe; otherwise set CSS `image-rendering: pixelated`.
+- Dev: toggle a Tweakpane pane and `stats.js` in dev builds only.
