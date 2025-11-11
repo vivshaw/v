@@ -1,0 +1,11 @@
+- struggled with tests. first, made only the tests for its current feature pass, while breaking half the others. then left a helpful summary of remaining test errors for the next dev to fix! then, when prompted to fix the tests, chose to fix only what it felt were the most important. then, when prompted again, it decided some tests were too hard and skipped them. it ultimately took over half an hour and 5 or so prompts
+- struggled to undertsand JSDOM tetsing norms. it installed both `canvas` and `jsdom-mock-canvas` and tried to use them simultaneously. but they contradict: one of those libraries lets Jest use real Context, the other mocks out Context. Claude was certain the two should be used together, and kept generating lengthy `.md` files explaining a hallucinated version of how that works. I had to tell it what they actually do and ask it to fix the situation. then it insisted on generating _more_ .md docs, explaining how it had been wrong.
+- claude has a habit of insisting the code compiles and runs, even when it can clearly see the error messages showing that it can't. I frequently had to intervene with "but is that true?"
+- claude loves to discover lazy answers. when trying to debug some isuses with 3d movement, on at least 5 or 6 separate occasions it was like "eureka!! the problem was just that I swapped this `-` sign, so it's going the wrong direction!" when it was not true
+- implemented backface culling mildly incorrectly. when asked to fix, instead removed backface culling. but walls were still not visible from both sides.
+- it was very helpful to have manual test modes for each feature. often, building a new feature would break previous things, so quickly poking through the debug modes would reveal that.
+
+2:
+
+- tried to use Claude subagents. they had a habit of ignoring some specifics that I mentioned in the agent template. my guess is this is about timing of the subagent call? for example, I asked it to generate a doc following a template while thinking and asking any necessary questions, but it seemed to _first_ ask me questions and think out a plan, _then_ call the subagent to write the document. but the planning needed to happen in the subagent.
+- does thinking mode even work with subagents? debugging performance has been awful
